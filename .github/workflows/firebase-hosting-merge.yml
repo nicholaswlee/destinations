@@ -18,3 +18,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DESTINATIONS_2AFDF }}
           channelId: live
           projectId: destinations-2afdf
+          entryPoint: frontend/destinations-frontend/firebase.json
