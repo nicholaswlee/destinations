@@ -24,7 +24,7 @@ export function WelcomeModal({open, onClose}: {open: boolean, onClose: () => voi
         <S.StyledHeader>Welcome to Destinations!</S.StyledHeader>
         <S.BodyText>Destinations is a place to keep track of all the places you want to visit. 
             You can add new destinations, upload photos, and keep notes on each place you want to visit.
-            Let's get to know you. 
+            Time to get to know you! 
         </S.BodyText>
         <S.StyledTextField 
             placeholder="Name"
