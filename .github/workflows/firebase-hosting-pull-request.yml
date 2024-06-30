@@ -19,4 +19,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DESTINATIONS_2AFDF }}
           projectId: destinations-2afdf
-          entryPoint: frontend/destinations-frontend/firebase.json
+          entryPoint: frontend/destinations-frontend/
