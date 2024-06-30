@@ -6,6 +6,8 @@ export const Circle = styled.div`
     border-radius: 500px;
     background-color: white;
     width: 5vh;
+    min-width: 5vh;
+    min-height: 5vh; 
     height: 5vh;
     margin: 10px;
     display: flex;
