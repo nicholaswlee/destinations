@@ -27,7 +27,7 @@ const [tiles, setTiles] = useState<React.ReactElement | React.ReactElement[]>([]
           return setTiles([]);
         }
         setTiles(files.map((file, idx) => {
-          return <FileEntry filename={file.name} index={idx}  deleteFile={() => deleteFile(idx)}/>
+          return <FileEntry filename={file.name} index={idx} key={idx} deleteFile={() => deleteFile(idx)}/>
         }))
       }
     displayFileNames()
