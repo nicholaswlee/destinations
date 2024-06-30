@@ -31,7 +31,7 @@ function DestinationEntry({onClick, score, notes, destination, username, images,
     if (people.length === 0) {
       return ""
     }
-    return <>with  {people.map(p => <b>{p},</b>)}, </>
+    return <>with  {people.map((p, idx) => <b key={idx}>{p},</b>)}, </>
   }
 
   return <>
@@ -46,7 +46,7 @@ function DestinationEntry({onClick, score, notes, destination, username, images,
     <S.StyledColumn>
       <S.ImageRow>
       {imgUrls.length > 0 ? (
-       imgUrls.map(imgUrl => <S.StyledImage src={imgUrl} alt="Loaded from Firebase" />)
+       imgUrls.map((imgUrl,idx) => <S.StyledImage key={idx} src={imgUrl} alt="Loaded from Firebase" />)
       ) : (
         <CircularProgress size={100} style={{color: "#034472"}}/>
       )}
