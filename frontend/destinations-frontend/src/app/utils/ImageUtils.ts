@@ -1,4 +1,4 @@
-import { getDownloadURL, ref } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../libs/FirebaseApp";
 
 const BUCKET = "gs://destinations-2afdf.appspot.com/"
@@ -12,3 +12,14 @@ export const getImageUrl = async (imagePath: string): Promise<string> => {
     throw error;
   }
 };
+
+export const uploadImage = async (file: File): Promise<string> => {
+  try {
+    const storageRef = ref(storage, "images/" + file.name);
+    const result = await uploadBytes(storageRef, file)
+    return result.ref.fullPath;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw error;
+  }
+}

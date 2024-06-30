@@ -14,9 +14,9 @@ export const Container = styled.div`
     align-items: center;
     justify-content: start;
     display: flex;
+    flex: 1;
     flex-direction: column;
     height: 100vh;
-    width: 100vh;
     background-color: white;
     border: 1px solid black;
     overflow: scroll;
