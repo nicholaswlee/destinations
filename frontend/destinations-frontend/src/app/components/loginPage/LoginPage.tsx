@@ -14,7 +14,7 @@ function LoginPage() {
             <S.Title>
                 D E S T I N A T I O N S
             </S.Title>
-             <GoogleLoginButton onPress={() => {handleLogin()}}>Login with Google</GoogleLoginButton>
+             <GoogleLoginButton onPress={() => {handleLogin()}}/>
         </S.StyledBody>
 
     )}

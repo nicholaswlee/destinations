@@ -12,6 +12,7 @@ export default function HomePage({children} : {children?:  JSX.Element[]}) {
     const loadEntries = () => {
         return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map( 
           (index) =>  <DestinationEntry 
+            key={index}
             onClick={() => setCurrentEntry(index)}
             score={index}
 
