@@ -9,15 +9,18 @@ import AddNewDestinationModal from '../addNewDestinationModal/AddNewDestinationM
 import { useFirebase } from '@/app/contexts/FirebaseContext'
 import DestinationEntriesContainer from '../destinationEntriesContainer/DestinationEntriesContainer'
 import { DestinationEntryInfo } from '@/app/models/DestinationEntryInfo'
+import { useGlobalContext } from '@/app/contexts/GlobalContext'
+import { WelcomeModal } from '../welcomeModal/WelcomeModal'
 
 export default function HomePage({children} : {children?:  JSX.Element[]}) {
-  const {storage} = useFirebase()
+    const {userInfo, isNewUser} = useGlobalContext()
     const [currentEntry, setCurrentEntry] = useState<DestinationEntryInfo | null>(null)
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
     const [isAddOpen, setIsAddOpen] = useState<boolean>(false)
 
   return (
-    <>
+  <>
+  <WelcomeModal open={isNewUser} onClose={() => {}}/>
     <Header toggleDrawer={() => setIsDrawerOpen(!isDrawerOpen)}/>    
     <LeftDrawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}/>
      <S.StyledDivider>

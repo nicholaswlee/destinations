@@ -31,8 +31,9 @@ function DestinationEntriesContainer({setCurrentEntry} : {setCurrentEntry: (entr
             key={index}
             onClick={() => setCurrentEntry(entry)}
             destination={entry.destinationId}
-            username={entry.username}
+            username={entry.name || "Unknown"}
             people={entry.withUsers}
+            profilePictureUrl={entry.profilePictureUrl}
             images={entry.images}
             notes={entry.notes} 
             score={entry.score}

@@ -57,3 +57,20 @@ export const StyledImage = styled.img`
   border-radius: 10px;
   margin: 0px 12px 0px 0px;
 `;
+
+
+export const StyledHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ProfilePicture = styled.img`
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  margin: 0px 12px 0px 0px;
+`;

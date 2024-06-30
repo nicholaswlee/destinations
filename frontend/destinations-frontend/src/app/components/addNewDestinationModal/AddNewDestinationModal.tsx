@@ -6,6 +6,7 @@ import FileEntry from '../fileEntry/FileEntry';
 import { createDestinationEntryInfo } from '@/app/models/DestinationEntryInfo';
 import { randomUUID } from 'crypto';
 import useAddNewDestinationModal from '@/app/hooks/useAddNewDestinationModal';
+import ModalBase from '../core/modalBase/ModalBase';
 
 interface ModalProps {
     open: boolean;
@@ -25,11 +26,7 @@ function AddNewDestinationModal({open, onClose} : ModalProps) {
         handleClose,
         isLoading
     } = useAddNewDestinationModal({onClose})
-  return <Modal
-  style={{ backgroundColor: "rgba(0, 0, 0, 0.25)", zIndex: 1 }}
-  open={open}
-  onClose={handleClose}>
-  <S.ModalWrapper>
+  return <ModalBase open={open} handleClose={onClose}>
     <S.Body>
       {isLoading ? <CircularProgress size={50}/>: <><S.Title>Add a new destination</S.Title>
       <TextField 
@@ -55,8 +52,7 @@ function AddNewDestinationModal({open, onClose} : ModalProps) {
     >Close</S.CloseButton>
       </S.ButtonContainer>
     </S.Body>
-  </S.ModalWrapper>
-</Modal>
+  </ModalBase>
 }
 
 export default AddNewDestinationModal

@@ -17,7 +17,7 @@ export const AuthenticationContext = createContext<AuthenticationContextType | u
 export const AuthenticationContextProvider = ({children} : {children: React.ReactNode}) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
-      const {auth} = useFirebase();
+    const {auth} = useFirebase();
     // Listen for auth state changes
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -38,6 +38,8 @@ export const AuthenticationContextProvider = ({children} : {children: React.Reac
     const handleLogin = async () => {
       const userData = await signInWithGoogle();
       setUser(userData);
+    
+      
     };
   
     const handleLogout = async () => {

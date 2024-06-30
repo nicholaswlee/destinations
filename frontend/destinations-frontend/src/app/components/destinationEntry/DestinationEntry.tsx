@@ -14,15 +14,22 @@ type DestinationEntryProps = {
   username: string;
   images: ImageInfo[];
   people: string[];
+  profilePictureUrl: string;
 }
-function DestinationEntry({onClick, score, notes, destination, username, images, people} : DestinationEntryProps) {
+function DestinationEntry({onClick, score, notes, destination, username, profilePictureUrl, images, people} : DestinationEntryProps) {
   const [imgUrls, setImgUrls] = React.useState<string[]>([])
+  const [pfpUrl, setPfpUrl] = React.useState<string | null>(null)
   useEffect(() => {
     const fetchImages = async () => {
       const fetchedUrls = await Promise.all(images.map((image) => 
         getImageUrl(image.imagePath)
       ))
       setImgUrls(fetchedUrls)
+      if(profilePictureUrl != undefined){
+        setPfpUrl(await getImageUrl(profilePictureUrl))
+      }
+      
+
     }
     fetchImages()
   }, [])
@@ -39,7 +46,10 @@ function DestinationEntry({onClick, score, notes, destination, username, images,
     <S.StyledButtonBase  onClick={onClick}>
     <S.StyledEntry>
     <S.StyledRow>
-    <p><b>{username}</b> went to <b>{destination}</b> {createWithPerson()}</p>
+      <S.StyledHeader>
+      {pfpUrl && <S.ProfilePicture src={pfpUrl} alt="Profile Picture" />}
+    <p><b>{username.split(" ")[0]}</b> went to <b>{destination}</b> {createWithPerson()}</p>
+      </S.StyledHeader>
     <Score value={score}/>
     </S.StyledRow>
     <Divider style={{backgroundColor: "grey", height: "0.5x", padding: "0px 12px"}}/>

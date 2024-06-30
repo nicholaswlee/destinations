@@ -9,6 +9,7 @@ import { ImageInfo, createImageInfo } from '../models/ImageInfo';
 import { useFirebase } from '../contexts/FirebaseContext';
 import { doc, setDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
+import { useGlobalContext } from '../contexts/GlobalContext';
 
 export default function useAddNewDestinationModal({onClose}: {onClose: () => void}){
     const [files, setFiles] = useState<File[]>([]);
@@ -17,8 +18,8 @@ export default function useAddNewDestinationModal({onClose}: {onClose: () => voi
     const [destination, setDestination] = useState<string>("")
     const [score, setScore] = useState<number>(0)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const {user} = useAuthentication()
     const {firestore} = useFirebase()
+    const {userInfo} = useGlobalContext()
   
   const handleChange = (file: File) => {
     setFiles([...files || [], file]);
@@ -39,6 +40,13 @@ export default function useAddNewDestinationModal({onClose}: {onClose: () => voi
     console.log(tiles)
   }, [files])
   
+  const clearData = () => {
+    setFiles([])
+    setDestination("")
+    setNotes("")
+    setScore(0)
+  }
+
   const uploadFiles = async (files: File[], userId: string, destnationEntryId: string): Promise<ImageInfo[]> => {
     const filePaths = await Promise.all(files.map (async (file) => {
       return createImageInfo("TODO ADD IMAGE DESCRIPTION", await uploadImage(file, userId, destnationEntryId))
@@ -52,23 +60,19 @@ export default function useAddNewDestinationModal({onClose}: {onClose: () => voi
         return 
     }
     setIsLoading(true)
-    if(user){
+    if(userInfo){
         const uuid = uuidv4()
-        const photoInfo = await uploadFiles(files, user.uid, uuid)
-        const destinationEntry = createDestinationEntryInfo(uuid, user.uid, user.displayName ?? "THIS PERSON DOESN'T HAVE A DISPLAY NAME LIKE WHY",photoInfo, notes, score, destination, [])
+        const photoInfo = await uploadFiles(files, userInfo.id, uuid)
+        const destinationEntry = createDestinationEntryInfo(uuid, userInfo.id, userInfo.profilePictureUrl, userInfo.name ,photoInfo, notes, score, destination, [])
         await setDoc(doc(firestore, "destinationEntries", uuid), destinationEntry);
-        setFiles([])
-        onClose()
         setIsLoading(false)
+        handleClose()
     }   
   
-    
   }
   const handleClose = () => {
-    () => {
-        setFiles([]) 
+        clearData()
         onClose()
-    }
   }
   return {
     setFiles, 

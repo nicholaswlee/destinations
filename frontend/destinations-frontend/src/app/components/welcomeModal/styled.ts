@@ -1,14 +1,36 @@
 import styled from "@emotion/styled";
 
-import { Button as MuiButton, withStyles } from "@mui/material";
+import { Button as MuiButton, TextField, withStyles } from "@mui/material";
 
 export const Body = styled.div`
   background-color: white;
   display: flex;
+  color: black;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
+
+export const StyledHeader = styled.div`
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #001166;
+    text-align: center;
+`;
+
+export const BodyText = styled.div`
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: black;
+    text-align: center;
+`;
+
+export const StyledTextField = styled(TextField)`
+    margin-bottom: 16px;
+ `;
+
 
 export const Title = styled.div`
   font-weight: 700;

@@ -5,7 +5,8 @@ import { Like } from "./Like";
 
 export type DestinationEntryInfo = {
     id: string, 
-    username: string,
+    name: string,
+    profilePictureUrl: string,
     userId: string,
     images: ImageInfo[],
     notes: string,
@@ -17,10 +18,11 @@ export type DestinationEntryInfo = {
     likes: Like[]
 }
 
-export const createDestinationEntryInfo = (id: string, userId: string, username: string, images: ImageInfo[], notes: string, score: number, destinationId: string, withUsers: string[]): DestinationEntryInfo => {
+export const createDestinationEntryInfo = (id: string, userId: string, profilePictureUrl: string, name: string, images: ImageInfo[], notes: string, score: number, destinationId: string, withUsers: string[]): DestinationEntryInfo => {
     return {
         id,
-        username,
+        name,
+        profilePictureUrl,
         userId,
         images,
         notes,
