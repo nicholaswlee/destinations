@@ -25,7 +25,13 @@ export default function HomePage({children} : {children?:  JSX.Element[]}) {
     <LeftDrawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}/>
      <S.StyledDivider>
     <DestinationEntriesContainer
-      setCurrentEntry={(entry) => setCurrentEntry(entry)}
+      setCurrentEntry={(entry) => {
+        if (currentEntry != null && entry.id ==  currentEntry.id){
+          setCurrentEntry(null)
+        }else{
+          setCurrentEntry(entry)
+        }
+      }}
     />
     {currentEntry != null && <S.Container>
    {currentEntry.id} 
